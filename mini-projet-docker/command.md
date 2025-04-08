@@ -33,9 +33,15 @@ git remote -v
 git branch
 git push -u origin main
 
-# J'ai pu creer les conteneurs et deployer l'application. Cependant je rencontre un probleme avec la base de donnee
-# je n'ai pas pu integrer les donnees lors de l'initialisation des conteneurs
-# j'ai aussi essaye la methode des env et des secrets mais ca ne marche pas non plus
+# J'ai pu creer les conteneurs et deployer l'application. Cependant je rencontre un probleme avec la base de donnee.
+# je n'ai pas pu integrer les donnees lors de l'initialisation des conteneurs alors jai essaye d'integrer les donnees manuellement. Cependant le probleme de la base de donnee persiste.
 ![page d accueil](https://github.com/user-attachments/assets/3a980d33-43eb-4175-adbd-1718ced07670)
+![donnee non renseignee](https://github.com/user-attachments/assets/d3d85ace-0fc6-4d89-91c5-49287c753165)
+![probleme de connexion](https://github.com/user-attachments/assets/4076e8c7-cf6b-411e-89b9-e740c9eb116e)
+
+# j'ai aussi essaye la methode des env et des secrets mais ca ne marche pas non plus
+
+
+
 
 
