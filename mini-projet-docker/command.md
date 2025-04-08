@@ -1,84 +1,92 @@
-#commandes docker
+# Commandes docker
 
 - docker build -t image_finapp:1 .
 - docker images
-docker-compose down
-docker-compose up -d |  docker-compose up -d --build
-docker ps -a  
-hostname -I
-docker ps
-docker logs finance_app
-docker rm finance_app
-docker rm finance_db
-docker rmi e46e06f3ccb5
-docker-compose up -d
-docker exec -it finance_db mysql -u root -p
+- docker-compose down
+- docker-compose up -d ou docker-compose up -d --build
+- docker ps -a  
+- hostname -I
+- docker ps
+- docker logs finance_app
+- docker rm finance_app
+- docker rm finance_db
+- docker rmi e46e06f3ccb5
+- docker-compose up -d
+- docker exec -it finance_db mysql -u root -p
 
 
 
-#commandes SQL
-SHOW TABLES;
-SHOW DATABASES;
-SELECT DATABASE();
-USE db_paymybuddy;
-INSERT INTO `user` (`email`, `password`, `firstname`, `lastname`, `balance`) VALUES ("security@gmail.com", 'passer', 'Security', 'User', 0.00);
-SELECT * FROM `user`;
+# Commandes SQL
+- SHOW TABLES;
+- SHOW DATABASES;
+- SELECT DATABASE();
+- USE db_paymybuddy;
+- INSERT INTO `user` (`email`, `password`, `firstname`, `lastname`, `balance`) VALUES ("security@gmail.com", 'passer', 'Security', 'User', 0.00);
+- SELECT * FROM `user`;
 
 
-#commandes git
-git remote -v
-git remote remove origin
-git remote add origin git@github.com:fatimacisse/TP_DevOps.git
-git remote -v
-git branch
-git push -u origin main
+# Commandes git
+- git remote -v
+- git remote remove origin
+- git remote add origin git@github.com:fatimacisse/TP_DevOps.git
+- git remote -v
+- git branch
+- git push -u origin main
 
-#J'ai pu creer les conteneurs et deployer l'application. Cependant je rencontre un probleme avec la base de donnee.
-#je n'ai pas pu integrer les donnees lors de l'initialisation des conteneurs alors jai essaye d'integrer les donnees manuellement. Cependant le probleme de la base de donnee persiste.
+# Commentaires et captures
+
+- J'ai pu creer les conteneurs et deployer l'application. Cependant je rencontre un probleme avec la base de donnee.
+- je n'ai pas pu integrer les donnees lors de l'initialisation des conteneurs alors jai essaye d'integrer les donnees manuellement. Cependant le probleme de la base de donnee persiste.
 ![page d accueil](https://github.com/user-attachments/assets/3a980d33-43eb-4175-adbd-1718ced07670)
 ![donnee non renseignee](https://github.com/user-attachments/assets/d3d85ace-0fc6-4d89-91c5-49287c753165)
 ![probleme de connexion](https://github.com/user-attachments/assets/4076e8c7-cf6b-411e-89b9-e740c9eb116e)
 
-#j'ai aussi essaye la methode des env et des secrets mais ca ne marche pas non plus
+- j'ai aussi essaye la methode des env et des secrets mais ca ne marche pas non plus
 
 
-#commande pour la creation du registry prive + push de mon image 'image_finapp'
+# Commandes pour la creation du registry prive + push de mon image 'image_finapp'
 
 #creation d'un conteneur registry-app pour le backend de mon registry prive
-docker run -d -p 5000:5000 --net  mini-projet-docker_default --name registry-app registry:2.8.1
+- docker run -d -p 5000:5000 --net  mini-projet-docker_default --name registry-app registry:2.8.1
 
 #creation d'un conteneur frontend-registry pour le frontend de mon registry prive
-docker run -d -p 9090:80 --net mini-projet-docker_default -e NGINX_PROXY_PASS_URL=http://registry-app:5000 -e DELETE_IMAGES=true -e REGISTRY_TITLE=Myregistry --name frontend-registry joxit/docker-registry-ui:2
+- docker run -d -p 9090:80 --net mini-projet-docker_default -e NGINX_PROXY_PASS_URL=http://registry-app:5000 -e DELETE_IMAGES=true -e REGISTRY_TITLE=Myregistry --name frontend-registry joxit/docker-registry-ui:2
 
-docker ps -a
+- docker ps -a
+  
 #tag de mon image afin de pouvoir le push vers mon registry prive
-docker tag image_finapp:1 192.168.56.7:5000/image_finapp:1
+- docker tag image_finapp:1 192.168.56.7:5000/image_finapp:1
 
-docker images
+- docker images
 
 #premier essaie pour push mon image
-docker push 192.168.56.7:5000/image_finapp:1 
+- docker push 192.168.56.7:5000/image_finapp:1 
 #voici le message d'erreur:
 #erreur https This error occurs because Docker is trying to communicate with your private registry over HTTPS, but the registry is configured to use HTTP. Here's how you can resolve this issue
 
 
 #si dessous la configuration de docker afin d'acceder au registre prive via HTTP au lieu de HTTPS
-sudo vi /etc/docker/daemon.json
+- sudo vi /etc/docker/daemon.json
 	{
   "insecure-registries": ["192.168.56.7:5000"]
-}
+        }
 
 #on redemarre docker et on allume les conteneurs
-sudo systemctl restart docker
-docker start registry-app  
-docker start frontend-registry  
+-  sudo systemctl restart docker
+- docker start registry-app  
+- docker start frontend-registry  
 
 #deuxieme essaie de push l'image et c'est un success
-docker push 192.168.56.7:5000/image_finapp:1
+- docker push 192.168.56.7:5000/image_finapp:1
 
-Url pour acceder au registry prive : http://192.168.56.7:9090/
+- Url pour acceder au registry prive : http://192.168.56.7:9090/
+
+# Captures du registry
+#Accueil
 
 ![registry prive](https://github.com/user-attachments/assets/8d0b296c-9ee7-4084-9e0f-f96e84cf7264)
+
+#Image
 ![registry prive2](https://github.com/user-attachments/assets/e28eb45d-46a9-4c7b-9ad7-429ed39bfaa4)
 
 
