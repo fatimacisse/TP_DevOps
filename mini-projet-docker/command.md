@@ -1,7 +1,7 @@
 #commandes docker
 
-docker build -t image_finapp:1 .
-docker images
+- docker build -t image_finapp:1 .
+- docker images
 docker-compose down
 docker-compose up -d |  docker-compose up -d --build
 docker ps -a  
