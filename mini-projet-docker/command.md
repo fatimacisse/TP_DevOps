@@ -36,3 +36,6 @@ git push -u origin main
 # J'ai pu creer les conteneurs et deployer l'application. Cependant je rencontre un probleme avec la base de donnee
 # je n'ai pas pu integrer les donnees lors de l'initialisation des conteneurs
 # j'ai aussi essaye la methode des env et des secrets mais ca ne marche pas non plus
+![page d accueil](https://github.com/user-attachments/assets/3a980d33-43eb-4175-adbd-1718ced07670)
+
+
