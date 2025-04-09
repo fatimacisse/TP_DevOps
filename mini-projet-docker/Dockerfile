@@ -2,10 +2,10 @@
 FROM amazoncorretto:17-alpine
 
 #responsable de maintenir le dockerfile
-Label maintainer="Mame Fatima CISSE"
+LABEL maintainer="Mame Fatima CISSE"
 
 # Copy de l artefact dans mon conteneur
-Copy target/paymybuddy.jar /app/paymybuddy.jar
+COPY target/paymybuddy.jar /app/paymybuddy.jar
 
 #Identifie le repo /app comme le repertoir courant de travail
 WORKDIR /app
