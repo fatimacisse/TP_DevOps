@@ -10,8 +10,8 @@ services:
       - "8080:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://finance_db:3306/db_paymybuddy
-      SPRING_DATASOURCE_USERNAME:  ${MYSQL_USER}
-      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_DATASOURCE_USERNAME:  ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
 
   finance_db:
     image: mysql:8.0
