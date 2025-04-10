@@ -49,7 +49,7 @@
 
 
 
-- Utilisation de la methode des environnements pour securiser les donnees sensibles. Le fichier .env est visible pour comprendre le fonctionnement. Cependant il est preferable de placer le fichier .env dans .gitignore.
+- J'ai utilise la methode des environnements pour securiser les donnees sensibles. Le fichier .env est visible dans le repo ( pour montrer le fonctionnement.) Cependant il est preferable de placer le fichier .env dans .gitignore.
 
 
 # Commandes pour la creation du registry prive + push de mon image 'image_finapp'
