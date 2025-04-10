@@ -2,7 +2,7 @@
 
 - docker build -t image_finapp:1 .
 - docker images
-- docker-compose down
+- docker-compose down | docker-compose down -v
 - docker-compose up -d ou docker-compose up -d --build
 - docker ps -a  
 - hostname -I
@@ -13,6 +13,9 @@
 - docker rmi e46e06f3ccb5
 - docker-compose up -d
 - docker exec -it finance_db mysql -u root -p
+- docker exec -it finance_db ls /docker-entrypoint-initdb.d/
+- docker-compose config
+  
 
 
 
@@ -21,7 +24,6 @@
 - SHOW DATABASES;
 - SELECT DATABASE();
 - USE db_paymybuddy;
-- INSERT INTO `user` (`email`, `password`, `firstname`, `lastname`, `balance`) VALUES ("security@gmail.com", 'passer', 'Security', 'User', 0.00);
 - SELECT * FROM `user`;
 
 
@@ -35,13 +37,19 @@
 
 # Commentaires et captures
 
-- J'ai pu creer les conteneurs et deployer l'application. Cependant je rencontre un probleme avec la base de donnee.
-- je n'ai pas pu integrer les donnees lors de l'initialisation des conteneurs alors jai essaye d'integrer les donnees manuellement. Cependant le probleme de la base de donnee persiste.
+- J'ai pu creer les conteneurs et deployer l'application.
+- Apres avoir effectue des tests toutes les fonctionnalites fonctionnent apres deploiement
 ![page d accueil](https://github.com/user-attachments/assets/3a980d33-43eb-4175-adbd-1718ced07670)
-![donnee non renseignee](https://github.com/user-attachments/assets/d3d85ace-0fc6-4d89-91c5-49287c753165)
-![probleme de connexion](https://github.com/user-attachments/assets/4076e8c7-cf6b-411e-89b9-e740c9eb116e)
 
-- j'ai aussi essaye la methode des env et des secrets mais ca ne marche pas non plus
+![page d'accueil PMB](https://github.com/user-attachments/assets/39a705a6-ce5c-492b-bdb8-dd5e04e2c2f1)
+
+![Add buddy](https://github.com/user-attachments/assets/b92d3ee6-e1b9-4bca-8475-b6cc84ca6864)
+
+![Deconnexion](https://github.com/user-attachments/assets/2319d4d1-53a9-4103-8205-b0be105e4b17)
+
+
+
+- Utilisation de la methode des environnements pour securiser les donnees sensibles. Le fichier .env est visible pour comprendre le fonctionnement. Cependant il est preferable de placer le fichier .env dans .gitignore.
 
 
 # Commandes pour la creation du registry prive + push de mon image 'image_finapp'
