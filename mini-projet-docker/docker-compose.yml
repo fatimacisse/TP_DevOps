@@ -10,35 +10,19 @@ services:
       - "8080:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://finance_db:3306/db_paymybuddy
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-    #secrets:
-     # - db_username
-      #- db_password
-
+      SPRING_DATASOURCE_USERNAME:  ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
 
   finance_db:
     image: mysql:8.0
     container_name: finance_db
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./initdb:/docker-entrypoint-initdb.d/
-    #secrets:
-      #- db_password
-      #- db_username
-      #- root_password
-
-#secrets:
- # db_password:
-  #  file: ./secrets/db_password    # Fichier contenant le mot de passe utilisateur
-  #db_username:
-   # file: ./secrets/db_username  # Fichier contenant le nom d'utilisateur
-  #root_password:
-   # file: ./secrets/root_password  # Fichier contenant le mot de passe root
     
 volumes:
   mysql_data:
