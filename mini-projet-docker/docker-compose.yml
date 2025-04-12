@@ -8,6 +8,8 @@ services:
       - finance_db
     ports:
       - "8080:8080"
+    env_file:
+      - .env
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://finance_db:3306/db_paymybuddy
       SPRING_DATASOURCE_USERNAME:  ${SPRING_DATASOURCE_USERNAME}
@@ -16,6 +18,8 @@ services:
   finance_db:
     image: mysql:8.0
     container_name: finance_db
+    env_file:
+      - .env
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
